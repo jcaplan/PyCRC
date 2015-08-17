@@ -41,7 +41,7 @@ class CRC16Test(unittest.TestCase):
     def testCalculateBytearray(self):
         msg = "Calculated CRC16 for 0123456789 should still be 0x443D" \
               " when passing a bytearray parameter."
-        self.assertEqual(self.crc.calculate(bytearray("0123456789")), int('0x443D', 0), msg)
+        self.assertEqual(self.crc.calculate(bytearray("0123456789".encode('utf-8'))), int('0x443D', 0), msg)
 
     def testTableItem42(self):
         msg = "The precalculated table's item #42 should be 0xdf81"
