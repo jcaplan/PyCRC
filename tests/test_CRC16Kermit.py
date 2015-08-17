@@ -28,6 +28,12 @@ class CRC16KermitTest(unittest.TestCase):
         self.assertEqual(
             self.crc.calculate("0123456789"), int('0x6E5F', 0), msg)
 
+    def testCalculateBytearray(self):
+        msg = "Calculated CRC16Kermit for 0123456789 should still be 0x6E5F" \
+              " when passing a bytearray parameter."
+        self.assertEqual(
+            self.crc.calculate(bytearray("0123456789")), int('0x6E5F', 0), msg)
+
     def testTableItem42(self):
         msg = "The precalculated table's item #42 should be 0x8e58"
         self.assertEqual(self.crc.crc16kermit_tab[42], '0x8e58', msg)

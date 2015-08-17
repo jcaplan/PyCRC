@@ -29,6 +29,12 @@ class CRC32Test(unittest.TestCase):
         self.assertEqual(
             self.crc.calculate("0123456789"), int('0xA684C7C6', 0), msg)
 
+    def testCalculateBytearray(self):
+        msg = "Calculated CRC32 for 0123456789 should still be 0xA684C7C6" \
+              " when passing a bytearray parameter."
+        self.assertEqual(
+            self.crc.calculate(bytearray("0123456789")), int('0xA684C7C6', 0), msg)
+
     def testTableItem42(self):
         msg = "The precalculated table's item #42 should be 0xdbbbc9d6"
         self.assertEqual(self.crc.crc32_tab[42], '0xdbbbc9d6', msg)
