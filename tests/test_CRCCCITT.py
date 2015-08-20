@@ -52,6 +52,12 @@ class CRCCCITTTest(unittest.TestCase):
         self.assertEqual(
             self.crc_1.calculate("0123456789"), int('0x9C58', 0), msg)
 
+    def testCalculateVersion1Bytearray(self):
+        msg = "Calculated CRC CCITT (XModem) for 0123456789 should still be 0x9C58" \
+              " when passing a bytearray parameter."
+        self.assertEqual(
+            self.crc_1.calculate(bytearray("0123456789".encode('utf-8'))), int('0x9C58', 0), msg)
+
     def testTableItem42(self):
         msg = "The precalculated table's item #42 should be 0x8528"
         self.assertEqual(self.crc_1.crc_ccitt_tab[42], '0x8528', msg)

@@ -23,7 +23,7 @@ class CRC16Kermit(object):
     def calculate(self, input_data=None):
         try:
             is_string = isinstance(input_data, str)
-            is_bytes = isinstance(input_data, bytes)
+            is_bytes = isinstance(input_data, (bytes, bytearray))
 
             if not is_string and not is_bytes:
                 raise Exception("Please provide a string or a byte sequence "
