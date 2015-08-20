@@ -28,6 +28,12 @@ class CRC16DNPTest(unittest.TestCase):
         self.assertEqual(
             self.crc.calculate("0123456789"), int('0x7267', 0), msg)
 
+    def testCalculateBytearray(self):
+        msg = "Calculated CRC16DNP for 0123456789 should still be 0x7267" \
+              " when passing a bytearray parameter."
+        self.assertEqual(
+            self.crc.calculate(bytearray("0123456789".encode('utf-8'))), int('0x7267', 0), msg)
+
     def testTableItem42(self):
         msg = "The precalculated table's item #42 should be 0xba9a"
         self.assertEqual(self.crc.crc16dnp_tab[42], '0xba9a', msg)

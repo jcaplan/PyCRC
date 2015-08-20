@@ -29,6 +29,12 @@ class CRC16SICKTest(unittest.TestCase):
         self.assertEqual(
             self.crc.calculate("0123456789"), int('0xF6C6', 0), msg)
 
+    def testCalculateBytearray(self):
+        msg = "Calculated CRC16SICK for 0123456789 should still be 0xF6C6" \
+              " when passing a bytearray parameter."
+        self.assertEqual(
+            self.crc.calculate(bytearray("0123456789".encode('utf-8'))), int('0xF6C6', 0), msg)
+
 
 def buildTestSuite():
     return unittest.defaultTestLoader.loadTestsFromName(__name__)
