@@ -3,6 +3,10 @@
 History
 -------
 
+1.3 (2015-08-21)
+---------------------
+* mainly improving performance issues
+
 1.2 (2015-03-10)
 ---------------------
 * Cosmetic Refactoring
