@@ -21,7 +21,7 @@ if __name__ == "__main__":
     target = b'\x05d\x05\xc0\x00\x01\x00\x0c'
 
     # DECIMAL EXAMPLE
-    # target = '12341234'
+    target = '12341234'
 
     print("The results for {} are".format(target))
     print("{:20s} {:10X}".format(

@@ -36,12 +36,12 @@ class CRC32Test(unittest.TestCase):
             self.crc.calculate(bytearray("0123456789".encode('utf-8'))), int('0xA684C7C6', 0), msg)
 
     def testTableItem42(self):
-        msg = "The precalculated table's item #42 should be 0xdbbbc9d6"
-        self.assertEqual(self.crc.crc32_tab[42], '0xdbbbc9d6', msg)
+        msg = "The precalculated table's item #42 should be 3686517206(0xdbbbc9d6)"
+        self.assertEqual(self.crc.crc32_tab[42], 3686517206, msg)
 
     def testTableItem10(self):
-        msg = "The precalculated table's item #10 should be 0xe0d5e91e"
-        self.assertEqual(self.crc.crc32_tab[10], '0xe0d5e91e', msg)
+        msg = "The precalculated table's item #10 should be 3772115230(0xe0d5e91e)"
+        self.assertEqual(self.crc.crc32_tab[10], 3772115230, msg)
 
     def testTableItems(self):
         msg = ("After creating a CRC32 object we must have a precalculated "

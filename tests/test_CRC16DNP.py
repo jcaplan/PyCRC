@@ -35,12 +35,12 @@ class CRC16DNPTest(unittest.TestCase):
             self.crc.calculate(bytearray("0123456789".encode('utf-8'))), int('0x7267', 0), msg)
 
     def testTableItem42(self):
-        msg = "The precalculated table's item #42 should be 0xba9a"
-        self.assertEqual(self.crc.crc16dnp_tab[42], '0xba9a', msg)
+        msg = "The precalculated table's item #42 should be 47770(0xba9a)"
+        self.assertEqual(self.crc.crc16dnp_tab[42], 47770, msg)
 
     def testTableItem10(self):
-        msg = "The precalculated table's item #10 should be 0x9335"
-        self.assertEqual(self.crc.crc16dnp_tab[10], '0x9335', msg)
+        msg = "The precalculated table's item #10 should be 37685(0x9335)"
+        self.assertEqual(self.crc.crc16dnp_tab[10], 37685, msg)
 
     def testTableItems(self):
         msg = ("After creating a CRC16DNP object we must have a precalculated "

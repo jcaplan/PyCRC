@@ -29,32 +29,32 @@ class CRC16DNP(object):
                 raise Exception("Please provide a string or a byte sequence "
                                 "as argument for calculation.")
 
-            crcValue = 0x0000
+            crc_value = 0x0000
 
             for c in input_data:
                 d = ord(c) if is_string else c
-                tmp = crcValue ^ d
-                rotated = (crcValue >> 8)
-                crcValue = rotated ^ int(self.crc16dnp_tab[(tmp & 0x00ff)], 0)
+                tmp = crc_value ^ d
+                rotated = (crc_value >> 8)
+                crc_value = rotated ^ self.crc16dnp_tab[(tmp & 0x00ff)]
 
             # after processing the one's complement of the CRC is calculated
             # and the two bytes of the CRC are swapped.
-            crcValue ^= 0xffffffff  # (or crcValue = ~crcValue)
-            low_byte = (crcValue & 0xff00) >> 8
-            high_byte = (crcValue & 0x00ff) << 8
-            crcValue = low_byte | high_byte
+            crc_value ^= 0xffffffff  # (or crcValue = ~crcValue)
+            low_byte = (crc_value & 0xff00) >> 8
+            high_byte = (crc_value & 0x00ff) << 8
+            crc_value = low_byte | high_byte
 
-            return crcValue
+            return crc_value
         except Exception as e:
             print("EXCEPTION(calculate): {}".format(e))
 
     def init_crc16dnp(self):
-        '''The algorithm use tables with precalculated values'''
+        """The algorithm use tables with precalculated values"""
         for i in range(0, 256):
             crc = c_ushort(i).value
             for j in range(0, 8):
-                if (crc & 0x0001):
+                if crc & 0x0001:
                     crc = c_ushort(crc >> 1).value ^ self.crc16dnp_constant
                 else:
                     crc = c_ushort(crc >> 1).value
-            self.crc16dnp_tab.append(hex(crc))
+            self.crc16dnp_tab.append(crc)

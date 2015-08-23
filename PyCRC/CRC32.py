@@ -28,29 +28,29 @@ class CRC32(object):
                 raise Exception("Please provide a string or a byte sequence as \
                     argument for calculation.")
 
-            crcValue = 0xffffffff
+            crc_value = 0xffffffff
 
             for c in input_data:
                 d = ord(c) if is_string else c
-                tmp = crcValue ^ d
-                crcValue = (crcValue >> 8) ^ int(
-                    self.crc32_tab[(tmp & 0x00ff)], 0)
+                tmp = crc_value ^ d
+                crc_value = (crc_value >> 8) ^ self.crc32_tab[(tmp & 0x00ff)]
 
             # Only for CRC-32: When all bytes have been processed, take the
             # one's complement of the obtained CRC value
-            crcValue ^= 0xffffffff  # (or crcValue = ~crcValue)
+            crc_value ^= 0xffffffff  # (or crcValue = ~crcValue)
 
-            return crcValue
+            return crc_value
         except Exception as e:
             print("EXCEPTION(calculate): {}".format(e))
 
     def init_crc32(self):
-        '''The algorithm use tables with precalculated values'''
+        """The algorithm use tables with precalculated values"""
         for i in range(0, 256):
             crc = i
             for j in range(0, 8):
-                if (crc & 0x00000001):
+                if crc & 0x00000001:
                     crc = int(c_ulong(crc >> 1).value) ^ self.crc32_constant
                 else:
                     crc = int(c_ulong(crc >> 1).value)
-            self.crc32_tab.append(hex(crc))
+
+            self.crc32_tab.append(crc)

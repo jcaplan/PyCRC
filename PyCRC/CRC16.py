@@ -31,25 +31,25 @@ class CRC16(object):
                 raise Exception("Please provide a string or a byte sequence "
                                 "as argument for calculation.")
 
-            crcValue = 0x0000 if not self.mdflag else 0xffff
+            crc_value = 0x0000 if not self.mdflag else 0xffff
 
             for c in input_data:
                 d = ord(c) if is_string else c
-                tmp = crcValue ^ d
-                rotated = c_ushort(crcValue >> 8).value
-                crcValue = rotated ^ int(self.crc16_tab[(tmp & 0x00ff)], 0)
+                tmp = crc_value ^ d
+                rotated = crc_value >> 8
+                crc_value = rotated ^ self.crc16_tab[(tmp & 0x00ff)]
 
-            return crcValue
+            return crc_value
         except Exception as e:
             print("EXCEPTION(calculate): {}".format(e))
 
     def init_crc16(self):
-        '''The algorithm uses tables with precalculated values'''
+        """The algorithm uses tables with precalculated values"""
         for i in range(0, 256):
             crc = c_ushort(i).value
             for j in range(0, 8):
-                if (crc & 0x0001):
+                if crc & 0x0001:
                     crc = c_ushort(crc >> 1).value ^ self.crc16_constant
                 else:
                     crc = c_ushort(crc >> 1).value
-            self.crc16_tab.append(hex(crc))
+            self.crc16_tab.append(crc)

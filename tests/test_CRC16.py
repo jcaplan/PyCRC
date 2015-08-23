@@ -45,12 +45,12 @@ class CRC16Test(unittest.TestCase):
             self.crc.calculate(bytearray("0123456789".encode('utf-8'))), int('0x443D', 0), msg)
 
     def testTableItem42(self):
-        msg = "The precalculated table's item #42 should be 0xdf81"
-        self.assertEqual(self.crc.crc16_tab[42], '0xdf81', msg)
+        msg = "The precalculated table's item #42 should be 57217 (0xdf81)"
+        self.assertEqual(self.crc.crc16_tab[42], 57217, msg)
 
     def testTableItem10(self):
-        msg = "The precalculated table's item #10 should be 0x780"
-        self.assertEqual(self.crc.crc16_tab[10], '0x780', msg)
+        msg = "The precalculated table's item #10 should be 1920 (0x780)"
+        self.assertEqual(self.crc.crc16_tab[10], 1920, msg)
 
     def testTableItems(self):
         msg = ("After creating a CRC16 object we must have a precalculated "

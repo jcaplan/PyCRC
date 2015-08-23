@@ -2,11 +2,14 @@
 PyCRC
 ===============================
 
+.. image:: https://coveralls.io/repos/cristianav/PyCRC/badge.svg?branch=master&service=github
+    :target: https://coveralls.io/github/cristianav/PyCRC?branch=master
+
 .. image:: https://img.shields.io/travis/cristianav/PyCRC.svg
-        :target: https://travis-ci.org/cristianav/PyCRC
+     :target: https://travis-ci.org/cristianav/PyCRC
 
 .. image:: https://img.shields.io/pypi/v/PyCRC.svg
-        :target: https://pypi.python.org/pypi/PyCRC
+     :target: https://pypi.python.org/pypi/PyCRC
 
 .. image:: http://img.shields.io/badge/license-GPLv3-yellow.svg
     :target: http://opensource.org/licenses/GPL-3.0
