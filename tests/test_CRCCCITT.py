@@ -59,22 +59,22 @@ class CRCCCITTTest(unittest.TestCase):
             self.crc_1.calculate(bytearray("0123456789".encode('utf-8'))), int('0x9C58', 0), msg)
 
     def testTableItem42(self):
-        msg = "The precalculated table's item #42 should be 0x8528"
-        self.assertEqual(self.crc_1.crc_ccitt_tab[42], '0x8528', msg)
+        msg = "The precalculated table's item #42 should be 34088 (0x8528)"
+        self.assertEqual(self.crc_1.crc_ccitt_table[42], 34088, msg)
 
     def testTableItem10(self):
-        msg = "The precalculated table's item #10 should be 0xa14a"
-        self.assertEqual(self.crc_1.crc_ccitt_tab[10], '0xa14a', msg)
+        msg = "The precalculated table's item #10 should be 41290 (0xa14a)"
+        self.assertEqual(self.crc_1.crc_ccitt_table[10], 41290, msg)
 
     def testTableItems(self):
         msg = ("After creating a CRC CCITT object we must have a "
                "precalculated table with 256 items")
-        self.assertEqual(len(self.crc_1.crc_ccitt_tab), 256, msg)
+        self.assertEqual(len(self.crc_1.crc_ccitt_table), 256, msg)
 
     def testTableNotEmpty(self):
         msg = ("After creating a CRC CCITT object we must have a "
                "precalculated table not empty")
-        self.assertIsNot(self.crc_1.crc_ccitt_tab, [], msg)
+        self.assertIsNot(self.crc_1.crc_ccitt_table, [], msg)
 
 
 def buildTestSuite():
