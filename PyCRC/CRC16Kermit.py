@@ -1,4 +1,4 @@
-# -*- coding: utf8 -*-
+# -*- coding: utf-8 -*-
 
 #
 # CRC16Kermit (CRC-CCITT (Kermit)) MODULE
