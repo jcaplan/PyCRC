@@ -22,7 +22,7 @@ class CRC16(object):
             self.init_crc16()
         self.mdflag = bool(modbus_flag)
 
-    def calculate(self, input_data=None):
+    def calculate(self, input_data=None, prev=None):
         try:
             is_string = isinstance(input_data, str)
             is_bytes = isinstance(input_data, (bytes, bytearray))
@@ -31,7 +31,10 @@ class CRC16(object):
                 raise Exception("Please provide a string or a byte sequence "
                                 "as argument for calculation.")
 
-            crc_value = 0x0000 if not self.mdflag else 0xffff
+            if not prev:
+                crc_value = 0x0000 if not self.mdflag else 0xffff
+            else:
+                crc_value = prev
 
             for c in input_data:
                 d = ord(c) if is_string else c

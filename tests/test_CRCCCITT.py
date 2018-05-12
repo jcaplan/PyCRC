@@ -52,6 +52,13 @@ class CRCCCITTTest(unittest.TestCase):
         self.assertEqual(
             self.crc_1.calculate("0123456789"), int('0x9C58', 0), msg)
 
+    def testCalculateVersion1Multiple(self):
+        msg = "Calculated CRC CCIT (XModem) for 0x1234567812345678 in segments"
+        x = self.crc_1.calculate("1234567812345678")
+        y = self.crc_1.calculate("12345678")
+        y = self.crc_1.calculate("12345678", y)
+        self.assertEqual(x, y, msg)
+
     def testCalculateVersion1Bytearray(self):
         msg = "Calculated CRC CCITT (XModem) for 0123456789 should still be 0x9C58" \
               " when passing a bytearray parameter."

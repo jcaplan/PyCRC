@@ -44,6 +44,13 @@ class CRC16Test(unittest.TestCase):
         self.assertEqual(
             self.crc.calculate(bytearray("0123456789".encode('utf-8'))), int('0x443D', 0), msg)
 
+    def testCalculateMultiple(self):
+        msg = "Calculated CRC16 for 0x1234567812345678 in segments"
+        x = self.crc.calculate("1234567812345678".encode('utf-8'))
+        y = self.crc.calculate("12345678".encode('utf-8'))
+        y = self.crc.calculate("12345678".encode('utf-8'), y)
+        self.assertEqual(x, y, msg)
+
     def testTableItem42(self):
         msg = "The precalculated table's item #42 should be 57217 (0xdf81)"
         self.assertEqual(self.crc.crc16_tab[42], 57217, msg)

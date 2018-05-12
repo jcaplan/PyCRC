@@ -19,7 +19,7 @@ class CRC32(object):
         if not len(self.crc32_tab):
             self.init_crc32()
 
-    def calculate(self, input_data=None):
+    def calculate(self, input_data=None, prev=0xffffffff):
         try:
             is_string = isinstance(input_data, str)
             is_bytes = isinstance(input_data, (bytes, bytearray))
@@ -28,7 +28,7 @@ class CRC32(object):
                 raise Exception("Please provide a string or a byte sequence as \
                     argument for calculation.")
 
-            crc_value = 0xffffffff
+            crc_value = prev
 
             for c in input_data:
                 d = ord(c) if is_string else c
